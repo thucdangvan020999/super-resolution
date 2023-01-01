@@ -13,13 +13,30 @@ st.set_page_config(
 upload_path = "uploads/"
 download_path = "downloads/"
 
-main_image = Image.open('static/main_banner.png')
+main_image = Image.open('static/compare.png')
 
 st.image(main_image,use_column_width='auto')
-st.title("✨🖼 ISR using ESRGAN 👨‍💻🏜")
-
+st.title("👨‍💻👨‍💻IMAGE SUPER RESOLUTION👨‍💻👨‍💻") 
 model_name = st.radio("Choose Model for Image Super Resolution", ('ESRGAN model ✅', 'PSNR-oriented model ✅'))
 st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+
+
+import base64
+def add_bg_from_local(image_file):
+    with open(image_file, "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read())
+    st.markdown(
+    f"""
+    <style>
+    .stApp {{
+        background-image: url(data:image/{"png"};base64,{encoded_string.decode()});
+        background-size: cover
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+    )
+add_bg_from_local('static/background.png')    
 
 st.info('✨ Supports all popular image formats 📷 - PNG, JPG, BMP 😉')
 uploaded_file = st.file_uploader("Upload Image 🚀", type=["png","jpg","bmp","jpeg"])
@@ -29,6 +46,7 @@ if uploaded_file is not None:
             f.write((uploaded_file).getbuffer())
         with st.spinner(f"Working... 💫"):
             uploaded_image = os.path.abspath(os.path.join(upload_path,uploaded_file.name))
+            st.image(uploaded_image, caption='This is the original image 😉')
             downloaded_image = os.path.abspath(os.path.join(download_path,str("output_"+uploaded_file.name)))
 
             model = instantiate_model(model_name)
@@ -77,4 +95,4 @@ if uploaded_file is not None:
 else:
     st.warning('⚠ Please upload your Image file 😯')
 
-st.markdown("<br><hr><center>Made with ❤️ by <a href='mailto:ralhanprateek@gmail.com?subject=ISR using ESRGAN WebApp!&body=Please specify the issue you are facing with the app.'><strong>Prateek Ralhan</strong></a></center><hr>", unsafe_allow_html=True)
+st.markdown("<br><hr><center>Made with ❤️ by <a href='mailto:thucdangvan020999@gmail.com?subject=ISR using ESRGAN WebApp!&body=Please specify the issue you are facing with the app.'><strong>DANG VAN THUC</strong></a></center><hr>", unsafe_allow_html=True)
