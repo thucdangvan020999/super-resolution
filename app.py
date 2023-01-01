@@ -95,4 +95,4 @@ if uploaded_file is not None:
 else:
     st.warning('⚠ Please upload your Image file 😯')
 
-st.markdown("<br><hr><center>Made with ❤️ by <a href='mailto:thucdangvan020999@gmail.com?subject=ISR using ESRGAN WebApp!&body=Please specify the issue you are facing with the app.'><strong>DANG VAN THUC</strong></a></center><hr>", unsafe_allow_html=True)
+st.markdown("<br><hr><center>Made with ❤️ by <a href='mailto:thucdangvan020999@gmail.com?subject=ISR using ESRGAN WebApp!&body=Please specify the issue you are facing with the app.'><strong>LUU TIEN DAT/strong></a></center><hr>", unsafe_allow_html=True)
